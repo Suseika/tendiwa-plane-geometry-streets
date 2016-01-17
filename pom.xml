@@ -12,9 +12,7 @@
     <packaging>jar</packaging>
 
     <name>tendiwa-plane-geometry-streets</name>
-    <description>Algorithm for finding straightish chains of segment in segment
-        groups
-    </description>
+    <description>Algorithm for finding straightish chains of segments in segment groups</description>
 
     <dependencies>
         <dependency>
