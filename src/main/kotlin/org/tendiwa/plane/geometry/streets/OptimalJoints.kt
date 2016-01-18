@@ -8,10 +8,13 @@ import org.tendiwa.tools.butIf
 internal val Graph2D.optimalJoints: List<Joint>
     get() = vertices
         .flatMap { optimalJointFan(it) }
-        .butIf(
-            { it.all { it is MonoJoint } },
-            { listOf(it.first()) }
-        )
+        .removeRepeatedMonoJointIfIsolatedSegment()
+
+internal fun List<Joint>.removeRepeatedMonoJointIfIsolatedSegment(): List<Joint> =
+    butIf(
+        { it.all { it is MonoJoint } },
+        { listOf(it.first()) }
+    )
 
 private fun Graph2D.optimalJointFan(vertex: Point): List<Joint> =
     when (degreeOf(vertex)) {
