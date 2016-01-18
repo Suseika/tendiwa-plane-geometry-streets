@@ -24,8 +24,7 @@ internal class Crossroad(
         get() =
         if (hasNonPairedEdge()) {
             adjacentEdges
-                .filter { optimalPartition.used(it) }
-                .first()
+                .single { !optimalPartition.used(it) }
         } else {
             null
         }

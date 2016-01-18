@@ -1,6 +1,7 @@
 package org.tendiwa.plane.geometry.streets
 
 import org.junit.Test
+import org.tendiwa.graphs.edges
 import org.tendiwa.plane.directions.CardinalDirection.E
 import org.tendiwa.plane.directions.CardinalDirection.N
 import org.tendiwa.plane.directions.OrdinalDirection.*
@@ -45,5 +46,24 @@ class CrossroadTest {
             .optimalJoints
             .apply { assert(all { it is BiJoint }) }
             .apply { assertEquals(graph.edgesOf(commonPoint).size / 2, size) }
+    }
+
+    @Test
+    fun `optimal joints have distinct segments`() {
+        val commonPoint = Point(1.2, 3.4)
+        val graph = Graph2D(
+            setOf(
+                commonPoint.spanSegment(NE, 1.0),
+                commonPoint.spanSegment(SE, 2.0),
+                commonPoint.spanSegment(E, 2.0)
+            )
+        )
+        assertEquals(
+            expected = graph.edges,
+            actual = Crossroad(graph, commonPoint)
+                .optimalJoints
+                .flatMap { it.segments }
+                .toSet()
+        )
     }
 }
