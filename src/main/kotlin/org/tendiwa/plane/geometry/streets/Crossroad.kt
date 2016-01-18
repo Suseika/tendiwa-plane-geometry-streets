@@ -48,7 +48,3 @@ internal class Crossroad(
         }
 
 }
-
-fun a() {
-    val list = listOf(1, 2, 3) + 5
-}
