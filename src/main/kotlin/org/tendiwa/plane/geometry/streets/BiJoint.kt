@@ -31,6 +31,9 @@ internal data class BiJoint(
             Math.PI * 2 - Math.abs(directionFan().measure.radians - Math.PI)
     }
 
+    override val segments: List<Segment>
+        get() = listOf(a, b)
+
     override fun intergrateInto(graph: UndirectedGraph<Segment, BiJoint>) {
         graph.addVertex(a)
         graph.addVertex(b)
