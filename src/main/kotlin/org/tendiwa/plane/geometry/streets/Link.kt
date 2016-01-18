@@ -2,6 +2,7 @@ package org.tendiwa.plane.geometry.streets
 
 import java.util.*
 
+// TODO: Move to collections or delete
 class Link<T>(val payload: T) {
     private var left: Link<T>? = null
     private var right: Link<T>? = null

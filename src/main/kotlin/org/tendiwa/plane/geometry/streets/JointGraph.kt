@@ -7,10 +7,12 @@ import org.tendiwa.graphs.connectivity.connectivityComponents
 import org.tendiwa.graphs.trails.trail
 import org.tendiwa.graphs.vertices
 import org.tendiwa.plane.geometry.paths.SegmentPath
+import org.tendiwa.plane.geometry.points.Point
 import org.tendiwa.plane.geometry.segments.Segment
 import org.tendiwa.plane.geometry.segments.commonEndpoint
 import org.tendiwa.plane.geometry.segments.otherEnd
 
+// TODO: Make this a class that delegates to SimpleGraph
 internal fun JointGraph(
     joints: List<Joint>
 ): UndirectedGraph<Segment, BiJoint> =
@@ -24,10 +26,12 @@ internal fun JointGraph(
 internal val UndirectedGraph<Segment, BiJoint>.paths: List<SegmentPath>
     get() = connectivityComponents()
         .apply {
+            // TODO: Move this assertion to a test
             assert(all { !it.hasIntersections() })
         }
         .map { it.toPath() }
 
+// TODO: Extract to class JointChain that delegates to UndirectedGraph
 private fun UndirectedGraph<Segment, BiJoint>.toPath(): SegmentPath {
     val start = vertices
         .find { degreeOf(it) == 1 }
@@ -47,6 +51,8 @@ private fun UndirectedGraph<Segment, BiJoint>.toPath(): SegmentPath {
     }
 }
 
+// TODO: Rename to isChain, move to tendiwa-graphs and change the logic
+// TODO: accordingly
 private fun <V, E> UndirectedGraph<V, E>.hasIntersections(): Boolean =
     vertices.any { degreeOf(it) > 2 }
 
@@ -56,8 +62,8 @@ private fun openChainPath(segments: List<Segment>): SegmentPath {
         .toList()
         .dropLast(1)
         .map { it.first.commonEndpoint(it.second) }
-    val start = segments[0].otherEnd(connections[0])
-    val end = segments.last().otherEnd(connections.last())
+    val start: Point = segments[0].otherEnd(connections[0])
+    val end: Point = segments.last().otherEnd(connections.last())
     return SegmentPath(listOf(start) + connections + listOf(end))
 }
 
