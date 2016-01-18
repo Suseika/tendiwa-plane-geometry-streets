@@ -12,7 +12,7 @@ import kotlin.test.assertEquals
 
 class StreetsTest {
     @Test
-    fun `single-segment SegmentGroup has 1 street`() {
+    fun `single-segment SegmentGroup is 1 street`() {
         Polyline(
             listOf(
                 Point(1.2, 3.5),
@@ -24,7 +24,7 @@ class StreetsTest {
     }
 
     @Test
-    fun `polyline with more than 2 points has 1 street`() {
+    fun `polyline with more than 2 points is 1 street`() {
         Polyline(
             listOf(
                 Point(1.2, 3.4),
@@ -87,4 +87,5 @@ class StreetsTest {
             .streets()
             .apply { assertEquals(1, size) }
     }
+
 }

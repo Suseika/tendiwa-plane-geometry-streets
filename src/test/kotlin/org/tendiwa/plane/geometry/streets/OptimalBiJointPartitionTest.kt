@@ -27,7 +27,7 @@ class OptimalBiJointPartitionTest {
     }
 
     @Test
-    fun `finds optimal joints amont even number of joints`() {
+    fun `finds optimal joints among even number of joints`() {
         val center = Point(1.2, 3.4)
         val ne = center.spanSegment(NE, 1.0)
         val nw = center.spanSegment(NW, 1.0)
