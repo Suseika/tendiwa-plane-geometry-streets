@@ -4,6 +4,7 @@ import org.jgrapht.UndirectedGraph
 import org.jgrapht.graph.SimpleGraph
 import org.tendiwa.collections.loopedLinks
 import org.tendiwa.graphs.connectivity.connectivityComponents
+import org.tendiwa.graphs.isChain
 import org.tendiwa.graphs.trails.trail
 import org.tendiwa.graphs.vertices
 import org.tendiwa.plane.geometry.paths.SegmentPath
@@ -27,7 +28,7 @@ internal val UndirectedGraph<Segment, BiJoint>.paths: List<SegmentPath>
     get() = connectivityComponents()
         .apply {
             // TODO: Move this assertion to a test
-            assert(all { !it.hasIntersections() })
+            assert(all { it.isChain() })
         }
         .map { it.toPath() }
 
@@ -50,11 +51,6 @@ private fun UndirectedGraph<Segment, BiJoint>.toPath(): SegmentPath {
         else -> throw IllegalStateException("Report this bug")
     }
 }
-
-// TODO: Rename to isChain, move to tendiwa-graphs and change the logic
-// TODO: accordingly
-private fun <V, E> UndirectedGraph<V, E>.hasIntersections(): Boolean =
-    vertices.any { degreeOf(it) > 2 }
 
 private fun openChainPath(segments: List<Segment>): SegmentPath {
     val connections = segments
