@@ -4,8 +4,7 @@ import org.tendiwa.plane.directions.CardinalDirection.*
 import org.tendiwa.plane.directions.OrdinalDirection.*
 import org.tendiwa.plane.geometry.holeygons.Holeygon
 import org.tendiwa.plane.geometry.points.Point
-import org.tendiwa.plane.geometry.trails.Polygon
-
+import org.tendiwa.plane.geometry.polygons.Polygon
 
 fun TwoHoleHoleygon(): Holeygon =
     Holeygon(

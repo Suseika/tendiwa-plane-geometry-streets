@@ -4,9 +4,9 @@ import org.junit.Test
 import org.tendiwa.plane.geometry.graphs.constructors.Graph2D
 import org.tendiwa.plane.geometry.paths.SegmentPath
 import org.tendiwa.plane.geometry.points.Point
+import org.tendiwa.plane.geometry.polylines.Polyline
 import org.tendiwa.plane.geometry.rectangles.Rectangle
 import org.tendiwa.plane.geometry.segments.Segment
-import org.tendiwa.plane.geometry.trails.Polyline
 import kotlin.test.assertEquals
 
 class OptimalJointsKtTest {
