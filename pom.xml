@@ -42,7 +42,7 @@
         </dependency>
         <dependency>
             <groupId>org.tendiwa</groupId>
-            <artifactId>plane-geometry-fracturedHoleygon</artifactId>
+            <artifactId>plane-geometry-crackedHoleygon</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
